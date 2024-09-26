@@ -12,6 +12,7 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
+    reset, // Agrega la función reset aquí
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -22,9 +23,13 @@ export default function Register() {
     }
 
     try {
-      const { confirmPassword, ...userData } = data; // Eliminar confirmPassword antes de enviar
+      const { confirmPassword, ...userData } = data;
+      console.log("Datos del usuario:", userData); // Verifica los datos que se enviarán
       const response = await axios.post("/api/register", userData);
       console.log(response.data.message);
+
+      // Limpiar el formulario después de un envío exitoso
+      reset(); // Ahora reset funcionará correctamente
     } catch (error) {
       console.error(
         error.response ? error.response.data.message : error.message
@@ -56,7 +61,7 @@ export default function Register() {
                   priority
                 />
               </div>
-              <h1 className="font-black text-xl mb-5 text-yellow-400 text-center">
+              <h1 className="font-black text-3xl mb-5 text-yellow-400">
                 Formato de Registro
               </h1>
             </div>
@@ -67,7 +72,7 @@ export default function Register() {
               {/* Campos de Nombre */}
               <div className="mb-4">
                 <input
-                  id="primerNombre" // ID único agregado
+                  id="primerNombre"
                   {...register("primerNombre", {
                     required: "Este campo es obligatorio",
                   })}
@@ -83,7 +88,7 @@ export default function Register() {
 
               <div className="mb-4">
                 <input
-                  id="segundoNombre" // ID único agregado
+                  id="segundoNombre"
                   {...register("segundoNombre")}
                   placeholder="Segundo Nombre (opcional)"
                   className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
@@ -92,7 +97,7 @@ export default function Register() {
 
               <div className="mb-4">
                 <input
-                  id="apellidoPaterno" // ID único agregado
+                  id="apellidoPaterno"
                   {...register("apellidoPaterno", {
                     required: "Este campo es obligatorio",
                   })}
@@ -108,7 +113,7 @@ export default function Register() {
 
               <div className="mb-4">
                 <input
-                  id="apellidoMaterno" // ID único agregado
+                  id="apellidoMaterno"
                   {...register("apellidoMaterno", {
                     required: "Este campo es obligatorio",
                   })}
@@ -125,7 +130,7 @@ export default function Register() {
               {/* Campo de Correo y Teléfono */}
               <div className="mb-4">
                 <input
-                  id="correo" // ID único agregado
+                  id="correo"
                   {...register("correo", {
                     required: "Este campo es obligatorio",
                     pattern: {
@@ -144,7 +149,7 @@ export default function Register() {
 
               <div className="mb-4">
                 <input
-                  id="telefono" // ID único agregado
+                  id="telefono"
                   {...register("telefono")}
                   placeholder="Teléfono (opcional)"
                   className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
@@ -154,7 +159,7 @@ export default function Register() {
               {/* Selección de Rol */}
               <div className="mb-4 col-span-full">
                 <select
-                  id="rol" // ID único agregado
+                  id="rol"
                   {...register("rol", {
                     required: "Este campo es obligatorio",
                   })}
@@ -175,7 +180,7 @@ export default function Register() {
               {/* Justificación */}
               <div className="mb-4 col-span-full">
                 <textarea
-                  id="justificacion" // ID único agregado
+                  id="justificacion"
                   {...register("justificacion", {
                     required: "Este campo es obligatorio",
                   })}
@@ -195,9 +200,9 @@ export default function Register() {
                 <input
                   {...register("password", {
                     required: "Este campo es obligatorio",
-                  })} // Usar register aquí
+                  })}
                   type="password"
-                  id="password" // ID único agregado
+                  id="password"
                   required
                   className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
                   placeholder="Ingresa su contraseña"
@@ -209,9 +214,9 @@ export default function Register() {
                 <input
                   {...register("confirmPassword", {
                     required: "Este campo es obligatorio",
-                  })} // Usar register aquí
+                  })}
                   type="password"
-                  id="confirmPassword" // ID único agregado
+                  id="confirmPassword"
                   required
                   className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
                   placeholder="Confirma su contraseña"
