@@ -41,8 +41,8 @@ export default function Catalogo() {
         <title>Catálogo - Archivo Histórico Librería UG</title>
       </Head>
       <NavBar />
-      <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4">
-        <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 overflow-hidden text-blue-900 bg-gradient-to-r from-yellow-400 to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
+      <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4 overflow-hidden">
+        <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 text-blue-900 bg-gradient-to-r from-yellow-400 to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
           <div className="col-span-1 md:col-span-3">
             <h2 className="mb-3 font-serif text-2xl font-normal leading-tight lg:text-3xl">
               Explora nuestra colección de libros y recursos disponibles.
@@ -57,13 +57,13 @@ export default function Catalogo() {
               Comienza a explorar
             </a>
           </div>
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-2 md:flex md:justify-center">
             <Image
               src="/images/libreriaUg.png"
               alt="Libros"
-              className="w-full ml-0 select-none lg:ml-48 transition-transform duration-300 transform hover:scale-105" // Efecto de escala al pasar el mouse
-              width={500} // Establece el ancho deseado
-              height={300} // Establece la altura deseada
+              className="w-full select-none lg:ml-48 transition-transform duration-300 transform hover:scale-105"
+              width={500}
+              height={300}
             />
           </div>
         </div>
