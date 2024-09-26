@@ -42,8 +42,6 @@ export default function Catalogo() {
       </Head>
       <NavBar />
       <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4 overflow-visible">
-        {" "}
-        {/* Cambiado a overflow-visible */}
         <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 text-blue-900 bg-gradient-to-r from-yellow-400 to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
           <div className="col-span-1 md:col-span-3">
             <h2 className="mb-3 font-serif text-2xl font-normal leading-tight lg:text-3xl">
@@ -60,13 +58,16 @@ export default function Catalogo() {
             </a>
           </div>
           <div className="col-span-1 md:col-span-2 md:flex md:justify-center">
-            <Image
-              src="/images/libreriaUg.png"
-              alt="Libros"
-              className="w-full select-none lg:ml-48 transition-transform duration-300 transform hover:scale-105"
-              width={500}
-              height={300}
-            />
+            {/* Asegúrate de que el contenedor ocupe todo el ancho disponible */}
+            <div className="relative w-full h-auto">
+              <Image
+                src="/images/libreriaUg.png"
+                alt="Libros"
+                className="w-full h-auto object-cover transition-transform duration-300 transform hover:scale-105"
+                width={500}
+                height={300}
+              />
+            </div>
           </div>
         </div>
       </section>
