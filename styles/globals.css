@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Novecento+Wide&family=Raleway:wght@400&display=swap");
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-blue: #003c71; /* Pantone 540c */
+  --color-yellow: #f6e70f; /* Pantone 121c */
+  --color-gold: #e3d8b0; /* Pantone 451c */
+}
+
+body {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  background-color: var(--color-blue);
+  color: white; /* Color del texto */
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Novecento Wide", sans-serif;
+}
+
+.escudo {
+  max-width: 120px; /* Ajusta el tamaño según la recomendación */
+  margin: 20px auto; /* Centra la imagen horizontalmente */
+  padding: 0; /* Elimina el padding para evitar fondo blanco */
+  display: block;
+}
+
+.text-yellow-500 {
+  color: var(--color-yellow);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-center {
+  text-align: center;
+}
