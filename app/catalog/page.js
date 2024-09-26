@@ -41,7 +41,9 @@ export default function Catalogo() {
         <title>Catálogo - Archivo Histórico Librería UG</title>
       </Head>
       <NavBar />
-      <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4 overflow-hidden">
+      <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4 overflow-visible">
+        {" "}
+        {/* Cambiado a overflow-visible */}
         <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 text-blue-900 bg-gradient-to-r from-yellow-400 to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
           <div className="col-span-1 md:col-span-3">
             <h2 className="mb-3 font-serif text-2xl font-normal leading-tight lg:text-3xl">
