@@ -49,6 +49,24 @@ export default function Home() {
 
       {/* Barra de navegacion */}
       <NavBar />
+
+      <section className="featured-collections">
+        <h2>Colecciones Destacadas</h2>
+        {/*  Muestra aquí tus colecciones */}
+      </section>
+
+      <section className="news-events">
+        <h2>Noticias y Eventos</h2>
+        {/*  Noticias Recientes */}
+      </section>
+
+      <footer className="footer">
+        <p>
+          &copy; 2024 Archivo Histórico de la UG | Todos los derechos
+          reservados.
+        </p>
+        {/*  Información adicional */}
+      </footer>
     </>
   );
 }

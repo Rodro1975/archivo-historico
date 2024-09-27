@@ -28,7 +28,7 @@ export default function Login() {
       if (res.ok) {
         // Guarda el token en localStorage o sessionStorage
         localStorage.setItem("token", result.token);
-        // Redirige a la página de inicio o dashboard
+        // Redirige a la página del framework
         router.push("/framework");
       } else {
         // Muestra el error si hay uno

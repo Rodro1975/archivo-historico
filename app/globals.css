@@ -30,6 +30,10 @@ h3 {
   display: block;
 }
 
+.text-blue-600 {
+  color: var(--color-blue);
+}
+
 .text-yellow-500 {
   color: var(--color-yellow);
 }

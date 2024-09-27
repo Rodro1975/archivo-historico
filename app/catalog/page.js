@@ -86,18 +86,24 @@ export default function Catalogo() {
 
       {/* Barra de información */}
       {isInfoBarVisible && (
-        <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-800 px-6 py-4 sm:px-3.5">
+        <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gradient-to-r from-blue-900 to-gray-800 px-6 py-4 sm:px-3.5">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <p className="text-sm leading-6 text-white">
-              <strong
-                className={`font-medium text-yellow-500 ${
+            <div className="text-sm leading-6 text-white flex items-center">
+              <span
+                className={`font-bold text-yellow-500 ${
                   isAnimatingText ? "animate__animated animate__heartBeat" : ""
-                }`} // Animación para el texto
-                onMouseEnter={() => setIsAnimatingText(true)} // Inicia la animación al pasar el mouse
-                onMouseLeave={() => setIsAnimatingText(false)} // Detiene la animación al salir el mouse
+                }`}
+                onMouseEnter={() => {
+                  setIsAnimatingText(true);
+                  console.log("Mouse enter: animación activa");
+                }}
+                onMouseLeave={() => {
+                  setIsAnimatingText(false);
+                  console.log("Mouse leave: animación detenida");
+                }}
               >
                 PONTE ABEJA
-              </strong>
+              </span>
               <svg
                 viewBox="0 0 2 2"
                 className="mx-2 inline h-0.5 w-0.5 fill-current"
@@ -107,7 +113,7 @@ export default function Catalogo() {
               </svg>
               ¡Únete al Archivo Histórico de la UG y descubre un fascinante
               viaje a través del tiempo!
-            </p>
+            </div>
             <a
               href="/register"
               className="flex-none rounded inline-block bg-gray-900 px-3.5 py-1 text-sm font-medium text-gold shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
@@ -118,10 +124,10 @@ export default function Catalogo() {
           <div className="flex flex-1 justify-end">
             <button
               type="button"
-              className={`-m-3 p-3 focus-visible:outline-offset-[-4px] transition-transform duration-200 ease-in-out ${
+              className={`-m-3 p-3 focus-visible:outline-offset-[-4px] transition-transform duration-500 ease-in-out ${
                 isAnimatingX ? "animate__animated animate__rotateOut" : ""
-              } hover:scale-110 hover:text-gray-700`} // Añade clases para el efecto hover
-              onClick={manejarCerrarBarra} // Llama a manejarCerrarBarra al hacer clic
+              } hover:scale-110 hover:text-gray-700`}
+              onClick={manejarCerrarBarra}
             >
               <span className="sr-only">Dismiss</span>
               <svg
