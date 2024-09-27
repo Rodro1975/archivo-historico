@@ -1,16 +1,42 @@
 // app/login/page.js
 "use client";
 
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation"; // Usa next/navigation en lugar de next/router
 import Head from "next/head";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
 import NavBar from "../../components/NavBar";
 
 export default function Login() {
-  const { register, handleSubmit } = useForm(); // Registrar los métodos de react-hook-form
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState(""); // Para manejar mensajes de error
+  const router = useRouter(); // Para redirigir al usuario
 
   const onSubmit = async (data) => {
-    console.log(data); // Aquí puedes manejar el inicio de sesión
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        // Guarda el token en localStorage o sessionStorage
+        localStorage.setItem("token", result.token);
+        // Redirige a la página de inicio o dashboard
+        router.push("/framework");
+      } else {
+        // Muestra el error si hay uno
+        setError(result.message);
+      }
+    } catch (error) {
+      setError("Error en la conexión con el servidor");
+    }
   };
 
   return (
@@ -43,7 +69,7 @@ export default function Login() {
 
               <form
                 className="flex flex-col items-center"
-                onSubmit={handleSubmit(onSubmit)} // Añade el manejador de envío aquí
+                onSubmit={handleSubmit(onSubmit)}
                 autoComplete="on"
               >
                 <label
@@ -55,21 +81,27 @@ export default function Login() {
                 <input
                   type="email"
                   id="email"
-                  {...register("email")} // Registra el input con react-hook-form
+                  {...register("email")}
+                  autoComplete="email" // Agregado para el autocompletado
                   className="border border-blue-900 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none"
+                  required
                 />
                 <label
-                  htmlFor="password"
+                  htmlFor="login-password" // Cambiado para que coincida con el id
                   className="font-semibold text-sm text-blue-900 pb-1 block text-left w-full"
                 >
                   Contraseña
                 </label>
                 <input
                   type="password"
-                  id="login-password"
-                  {...register("password")} // Registra el input con react-hook-form
+                  id="login-password" // Debe coincidir con el for en el label
+                  {...register("password")}
+                  autoComplete="current-password" // Agregado para el autocompletado
                   className="border border-blue-900 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none"
+                  required
                 />
+                {error && <p className="text-red-500">{error}</p>}{" "}
+                {/* Mostrar error si existe */}
                 <button
                   type="submit"
                   className="transition duration-200 bg-yellow-400 hover:bg-blue-900 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
