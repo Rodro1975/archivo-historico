@@ -2,9 +2,11 @@
 "use client"; // Esto asegura que este componente puede usar hooks si es necesario
 
 import Head from "next/head"; // Asegúrate de importar Head
+import SocialBar from "../components/SocialBar"; // Importa la barra de redes sociales
 import NavBar from "../components/NavBar"; // Asegúrate de que la ruta sea correcta
 import Image from "next/image"; // Asegúrate de importar Image
 import Link from "next/link"; // Asegúrate de importar Link
+import "animate.css";
 
 export default function Home() {
   return (
@@ -12,35 +14,37 @@ export default function Home() {
       <Head>
         <title>Página Principal - Archivo Histórico Librería UG</title>
       </Head>
-
+      {/* Agrega la barra de redes sociales */}
+      <SocialBar />
       {/* Hero Section */}
       <section
         className="relative py-48 text-center bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/images/guanajuato.jpg')" }}
       >
-        <div className="absolute inset-0 bg-black opacity-35"></div>
-
+        <div className="absolute inset-0 bg-black opacity-40"></div>{" "}
+        {/* Overlay oscuro para mejorar contraste */}
         {/* Escudo de la Universidad */}
         <Image
           src="/images/escudo-png.png"
           alt="Escudo UG"
           width={128} // Requerido por Next.js
           height={128} // Requerido por Next.js
-          className="mx-auto w-32 h-32 mb-6" // Tailwind CSS para ajuste visual
+          className="mx-auto w-32 h-32 mb-6 animate__animated animate__bounce" // Añadir animación al escudo
         />
-
         {/* Overlay */}
         <div className="relative z-10 container mx-auto">
-          <h1 className="text-gold text-4xl font-bold">
+          <h1 className="text-gold text-5xl font-extrabold leading-tight shadow-lg">
             Bienvenido al Archivo Histórico de la Librería UG
           </h1>
-          <p className="text-gold mt-4">
+          <p
+            className={`text-gold mt-4 text-lg animate__animated animate__bounceInDown`}
+          >
             Explora nuestra colección y aprende más sobre la historia de la
             universidad.
           </p>
           <Link
             href="/login"
-            className="bg-yellow-500 text-black py-2 px-12 rounded inline-block font-bold hover:bg-yellow-400 transition duration-300 mt-10"
+            className="inline-block bg-yellow-400 text-black py-3 px-8 rounded-full font-bold hover:bg-yellow-500 hover:scale-110 transition duration-300 mt-10 shadow-lg"
           >
             Inicia Sesión
           </Link>
