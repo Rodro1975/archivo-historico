@@ -63,7 +63,7 @@ export default function Login() {
                 />
               </div>
 
-              <h1 className="font-black text-3xl mb-5 text-yellow-400">
+              <h1 className="font-black text-3xl mb-5 text-gold">
                 Iniciar Sesión
               </h1>
 
@@ -74,7 +74,7 @@ export default function Login() {
               >
                 <label
                   htmlFor="email"
-                  className="font-semibold text-sm text-blue-900 pb-1 block text-left w-full"
+                  className="font-semibold text-sm text-blue pb-1 block text-left w-full"
                 >
                   Correo Electrónico
                 </label>
@@ -83,12 +83,12 @@ export default function Login() {
                   id="email"
                   {...register("email")}
                   autoComplete="email" // Agregado para el autocompletado
-                  className="border border-blue-900 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none"
+                  className="border border-yellow rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-blue focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none"
                   required
                 />
                 <label
                   htmlFor="login-password" // Cambiado para que coincida con el id
-                  className="font-semibold text-sm text-blue-900 pb-1 block text-left w-full"
+                  className="font-semibold text-sm text-blue pb-1 block text-left w-full"
                 >
                   Contraseña
                 </label>
@@ -97,21 +97,21 @@ export default function Login() {
                   id="login-password" // Debe coincidir con el for en el label
                   {...register("password")}
                   autoComplete="current-password" // Agregado para el autocompletado
-                  className="border border-blue-900 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none"
+                  className="border border-yellow rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full text-blue focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none"
                   required
                 />
                 {error && <p className="text-red-500">{error}</p>}{" "}
                 {/* Mostrar error si existe */}
                 <button
                   type="submit"
-                  className="transition duration-200 bg-yellow-400 hover:bg-blue-900 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                  className="transition duration-200 bg-yellow text-blue hover:bg-blue hover:text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
                 >
                   <span className="inline-block mr-2">Iniciar Sesión</span>
                 </button>
               </form>
 
               <div className="text-center mt-4 text-sm">
-                <a href="#" className="text-blue-900 hover:text-gray-600">
+                <a href="#" className="text-blue hover:text-gold">
                   ¿Olvidaste tu contraseña?
                 </a>
               </div>
@@ -136,12 +136,10 @@ export default function Login() {
 
             {/* Enlace "No tienes cuenta" */}
             <div className="py-5 text-center">
-              <span className="text-blue-900 text-sm">
-                ¿No tienes una cuenta?
-              </span>
+              <span className="text-blue text-sm">¿No tienes una cuenta?</span>
               <a
                 href="/register"
-                className="text-yellow-400 hover:text-blue-900 text-sm font-semibold"
+                className="text-yellow hover:text-blue text-sm font-semibold ml-2"
               >
                 Regístrate
               </a>

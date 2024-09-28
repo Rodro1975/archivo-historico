@@ -40,7 +40,7 @@ const SocialBar = () => {
           href="https://www.facebook.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white hover:text-blue-600 transition duration-300"
+          className="text-white hover:text-blue-600 transition duration-300 fb-icon" // Cambia a azul al pasar el mouse
         >
           <FaFacebookF size={24} />
         </a>

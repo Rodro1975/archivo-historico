@@ -61,7 +61,7 @@ export default function Register() {
                   priority
                 />
               </div>
-              <h1 className="font-black text-3xl mb-5 text-yellow-400">
+              <h1 className="font-black text-3xl mb-5 text-gold">
                 Formato de Registro
               </h1>
             </div>
@@ -77,7 +77,7 @@ export default function Register() {
                     required: "Este campo es obligatorio",
                   })}
                   placeholder="Primer Nombre"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
                 {errors.primerNombre && (
                   <span className="text-red-600">
@@ -91,7 +91,7 @@ export default function Register() {
                   id="segundoNombre"
                   {...register("segundoNombre")}
                   placeholder="Segundo Nombre (opcional)"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
               </div>
 
@@ -102,7 +102,7 @@ export default function Register() {
                     required: "Este campo es obligatorio",
                   })}
                   placeholder="Apellido Paterno"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
                 {errors.apellidoPaterno && (
                   <span className="text-red-600">
@@ -118,7 +118,7 @@ export default function Register() {
                     required: "Este campo es obligatorio",
                   })}
                   placeholder="Apellido Materno"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
                 {errors.apellidoMaterno && (
                   <span className="text-red-600">
@@ -140,7 +140,7 @@ export default function Register() {
                   })}
                   type="email"
                   placeholder="Correo Electrónico"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
                 {errors.correo && (
                   <span className="text-red-600">{errors.correo.message}</span>
@@ -152,7 +152,7 @@ export default function Register() {
                   id="telefono"
                   {...register("telefono")}
                   placeholder="Teléfono (opcional)"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
               </div>
 
@@ -163,7 +163,7 @@ export default function Register() {
                   {...register("rol", {
                     required: "Este campo es obligatorio",
                   })}
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 >
                   <option value="">Selecciona un rol</option>
                   {roles.map((role) => (
@@ -186,7 +186,7 @@ export default function Register() {
                   })}
                   maxLength={300}
                   placeholder="Justificación"
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                 />
                 {errors.justificacion && (
                   <span className="text-red-600">
@@ -204,7 +204,7 @@ export default function Register() {
                   type="password"
                   id="password"
                   required
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                   placeholder="Ingresa su contraseña"
                 />
               </div>
@@ -218,7 +218,7 @@ export default function Register() {
                   type="password"
                   id="confirmPassword"
                   required
-                  className="border border-blue-900 rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-yellow-400 focus:ring-yellow-400 focus:ring-2 focus:outline-none w-full"
+                  className="border border-yellow rounded-lg px-3 py-2 text-sm text-blue-900 focus:border-blue focus:ring-gold focus:ring-2 focus:outline-none w-full"
                   placeholder="Confirma su contraseña"
                 />
               </div>
@@ -227,11 +227,11 @@ export default function Register() {
               <div className="col-span-full">
                 <button
                   type="submit"
-                  className="transition duration-200 bg-yellow-400 hover:bg-blue-900 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                  className="transition duration-200 bg-yellow text-blue hover:bg-blue hover:text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
                 >
                   Registrarse
                 </button>
-                <p className="text-center mt-4 text-sm text-blue-900">
+                <p className="text-center mt-4 text-sm text-blue">
                   Al hacer clic en &quot;Registrarse&quot;, aceptas nuestros
                   Términos de Servicio y Política de Privacidad.
                 </p>

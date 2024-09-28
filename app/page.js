@@ -44,7 +44,7 @@ export default function Home() {
           </p>
           <Link
             href="/login"
-            className="inline-block bg-yellow-400 text-black py-3 px-8 rounded-full font-bold hover:bg-yellow-500 hover:scale-110 transition duration-300 mt-10 shadow-lg"
+            className="inline-block bg-yellow text-blue py-3 px-8 rounded-full font-bold hover:bg-gold hover:text-white transition duration-300 mt-10 shadow-lg"
           >
             Inicia Sesión
           </Link>

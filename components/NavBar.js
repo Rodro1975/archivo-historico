@@ -11,7 +11,7 @@ const NavBar = () => {
   const currentPath = usePathname(); // Aquí obtenemos la ruta actual
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-white shadow-lg border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logotipo UGTO */}
         <a
@@ -50,7 +50,7 @@ const NavBar = () => {
             type="button"
             aria-controls="navbar-search"
             aria-expanded={isOpen}
-            className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
+            className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1 transition-transform duration-300 transform hover:scale-110"
           >
             <svg
               className="w-5 h-5"
@@ -71,7 +71,7 @@ const NavBar = () => {
           </button>
         </div>
 
-        {/* Menú de navegación y barra de búsqueda (pantallas pequeñas) */}
+        {/* Menú de navegación (pantallas pequeñas) */}
         <div
           className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
             isOpen ? "block" : "hidden"
@@ -80,54 +80,24 @@ const NavBar = () => {
         >
           {/* Menú de navegación */}
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a
-                href="/"
-                className={`block py-2 px-3 text-[#003c71] ${
-                  currentPath === "/" ? "animate__animated animate__hinge" : ""
-                } font-semibold`}
-                aria-current={currentPath === "/" ? "page" : undefined}
-              >
-                Archivo Histórico
-              </a>
-            </li>
-            <li>
-              <a
-                href="/login"
-                className={`block py-2 px-3 text-[#003c71] ${
-                  currentPath === "/login"
-                    ? "animate__animated animate__hinge"
-                    : ""
-                } font-semibold`}
-              >
-                Login
-              </a>
-            </li>
-            <li>
-              <a
-                href="/register"
-                className={`block py-2 px-3 text-[#003c71] ${
-                  currentPath === "/register"
-                    ? "animate__animated animate__hinge"
-                    : ""
-                } font-semibold`}
-              >
-                Regístrate
-              </a>
-            </li>
-            <li>
-              <a
-                href="/catalog"
-                className={`block py-2 px-3 text-[#003c71] ${
-                  currentPath === "/catalog"
-                    ? "animate__animated animate__hinge"
-                    : ""
-                } font-semibold`}
-                aria-current={currentPath === "/catalog" ? "page" : undefined}
-              >
-                Catálogo
-              </a>
-            </li>
+            {["/", "/login", "/register", "/catalog"].map((path, index) => (
+              <li key={index}>
+                <a
+                  href={path}
+                  className={`block py-3 px-4 text-gold hover:bg-yellow hover:text-blue rounded-full transition-all duration-300 text-lg font-bold ${
+                    currentPath === path
+                      ? "animate__animated animate__hinge"
+                      : ""
+                  } font-semibold`}
+                  aria-current={currentPath === path ? "page" : undefined}
+                >
+                  {path === "/"
+                    ? "Archivo Histórico"
+                    : path.substring(1).charAt(0).toUpperCase() +
+                      path.substring(2)}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

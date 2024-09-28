@@ -53,8 +53,9 @@ export default function Catalogo() {
         <title>Catálogo - Archivo Histórico Librería UG</title>
       </Head>
       <NavBar />
+      {/* seccion de información */}
       <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4 overflow-visible">
-        <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 text-blue-900 bg-gradient-to-r from-yellow-400 to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
+        <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 text-blue bg-gradient-to-r from-yellow to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
           <div className="col-span-1 md:col-span-3">
             <h2 className="mb-3 font-serif text-2xl font-normal leading-tight lg:text-3xl">
               Explora nuestra colección de libros y recursos disponibles.
@@ -64,7 +65,7 @@ export default function Catalogo() {
             </p>
             <a
               href="/login"
-              className="w-full text-blue-900 border border-blue-900 bg-transparent hover:bg-blue-900 hover:text-white transition duration-200 shadow-lg py-2 px-4 rounded-lg text-center sm:w-auto"
+              className="w-full text-blue border border-blue bg-transparent hover:bg-blue hover:text-white transition duration-200 shadow-lg py-2 px-4 rounded-lg text-center sm:w-auto"
             >
               Comienza a explorar
             </a>
@@ -86,11 +87,11 @@ export default function Catalogo() {
 
       {/* Barra de información */}
       {isInfoBarVisible && (
-        <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gradient-to-r from-blue-900 to-gray-800 px-6 py-4 sm:px-3.5">
+        <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gradient-to-r from-blue to-gray-800 px-6 py-4 sm:px-3.5">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <div className="text-sm leading-6 text-white flex items-center">
               <span
-                className={`font-bold text-yellow-500 ${
+                className={`font-bold text-yellow ${
                   isAnimatingText ? "animate__animated animate__heartBeat" : ""
                 }`}
                 onMouseEnter={() => {
@@ -193,14 +194,14 @@ export default function Catalogo() {
           <div className="flex flex-col items-center justify-center mt-20 space-x-0 space-y-2 md:space-x-2 md:space-y-0 md:flex-row">
             <button
               onClick={manejarPaginaAnterior}
-              className="w-full rounded-full bg-black text-white px-6 py-3 md:w-auto"
+              className="w-full rounded-full bg-yellow text-blue px-6 py-3 md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
               disabled={pagina === 0}
             >
               Página Anterior
             </button>
             <button
               onClick={manejarPaginaSiguiente}
-              className="w-full rounded-full bg-black text-white px-6 py-3 md:w-auto"
+              className="w-full rounded-full bg-yellow text-blue px-6 py-3 md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
               disabled={pagina === totalPaginas - 1}
             >
               Página Siguiente

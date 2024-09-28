@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Novecento+Wide&family=Raleway:wght@400&display=swap");
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,10 +12,10 @@
 }
 
 body {
-  margin: 0;
   font-family: "Raleway", sans-serif;
   background-color: var(--color-blue);
-  color: white; /* Color del texto */
+  color: white;
+  margin: 0;
 }
 
 h1,
@@ -30,7 +31,12 @@ h3 {
   display: block;
 }
 
-.text-yellow-500 {
+/* Clases de color personalizadas utilizando las variables CSS */
+.text-blue {
+  color: var(--color-blue);
+}
+
+.text-yellow {
   color: var(--color-yellow);
 }
 
@@ -40,4 +46,22 @@ h3 {
 
 .text-center {
   text-align: center;
+}
+
+/* Estilos adicionales para mejorar la presentación */
+.bg-blue {
+  background-color: var(--color-blue);
+}
+
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+
+.bg-gold {
+  background-color: var(--color-gold);
+}
+
+/* Específico para iconos */
+.fb-icon:hover {
+  color: #2563eb; /* Forzar el color azul */
 }
