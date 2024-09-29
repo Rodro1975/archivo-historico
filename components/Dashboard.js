@@ -1,48 +1,45 @@
-// components/Dashboard.js
-import React from "react";
-import SideBar from "../components/SideBar"; // Asegúrate de importar el Sidebar
+import React, { useState } from "react";
+import SideBar from "./SideBar"; // Importar el componente SideBar
+import PanelAdmin from "../components/PanelAdmin";
 
-const Dashboard = ({ children }) => {
+const DashboardLayout = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Comenzar con la barra lateral cerrada
+
   return (
-    <div style={{ display: "flex" }}>
-      <SideBar /> {/* Incluye el Sidebar aquí */}
-      <div
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      {/* Contenido principal */}
+      <main
         style={{
-          flexGrow: 1,
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
-          backdropFilter: "blur(10px)",
+          flex: 1,
+          padding: "20px",
+          marginRight: isSidebarOpen ? "250px" : "0", // Ajustar espacio según la barra lateral
+          transition: "margin-right 0.3s ease",
+          background: "lightgray", // Fondo para el área de trabajo
         }}
       >
-        <header
-          style={{
-            backgroundColor: "var(--color-gold)",
-            color: "var(--color-blue)",
-            padding: "16px",
-            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>Dashboard</h1>
-        </header>
-        <main style={{ padding: "16px" }}>
-          {children} {/* Aquí se renderizarán los componentes hijos */}
-        </main>
-        <footer
-          style={{
-            backgroundColor: "var(--color-blue)",
-            color: "white",
-            padding: "16px",
-            textAlign: "center",
-            borderTop: "2px solid var(--color-gold)",
-          }}
-        >
-          <p style={{ fontSize: "14px" }}>
-            &copy; {new Date().getFullYear()} Archivo Histórico de la Librería
-            UG
-          </p>
-        </footer>
-      </div>
+        {children}
+
+        {/* Aqui se integran los componentes */}
+        <PanelAdmin />
+      </main>
+
+      {/* Botón para alternar la barra lateral */}
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          zIndex: 1000,
+        }}
+      >
+        {isSidebarOpen ? "Cerrar Menú" : "Abrir Menú"}
+      </button>
+
+      {/* Barra lateral */}
+      <SideBar isOpen={isSidebarOpen} />
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;

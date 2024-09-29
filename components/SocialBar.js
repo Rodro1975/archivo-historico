@@ -5,7 +5,7 @@ import { SiX } from "react-icons/si"; // Importa el icono de X
 
 const SocialBar = () => {
   return (
-    <div className="sticky top-0 z-50 flex flex-col md:flex-row justify-between items-center p-4 bg-gray-800">
+    <div className="sticky top-0  flex flex-col md:flex-row justify-between items-center p-4 bg-gray-800">
       {/* Barra de búsqueda (pantallas grandes) */}
       <div className="relative mb-4 md:mb-0 md:w-1/2">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
