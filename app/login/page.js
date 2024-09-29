@@ -24,6 +24,7 @@ export default function Login() {
       });
 
       const result = await res.json();
+      console.log("Respuesta del servidor:", result); // Agrega este log para ver la respuesta
 
       if (res.ok) {
         // Guarda el token en localStorage o sessionStorage
