@@ -18,7 +18,7 @@ const Footer = () => {
       {/* Cubierta con degradado de gris oscuro a gris medio */}
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-gray-200 opacity-90"></div>
 
-      <div className="relative z-10 px-4 py-12 mx-auto max-w-7xl">
+      <div className="relative z-5 px-4 py-12 mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
           {/* Enlaces a la izquierda */}
           <div className="text-center md:text-left md:order-1 flex-grow md:flex-none">
@@ -83,7 +83,7 @@ const Footer = () => {
           {/* Logo al centro */}
           <div className="flex-shrink-0 mb-6 md:mb-0 md:order-2 md:w-auto w-full flex justify-center">
             <Image
-              src="/images/logo_libreria.png"
+              src="/images/Logo_libreria.png"
               alt="Logo Librería"
               width={200}
               height={200}
