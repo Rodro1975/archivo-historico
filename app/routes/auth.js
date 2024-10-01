@@ -27,21 +27,24 @@ router.post("/login", async (req, res) => {
       return res.status(400).send("Contraseña incorrecta");
     }
 
+    // Mostrar el token almacenado
+    console.log(localStorage.getItem("token"));
+    console.log("Usuario encontrado:", user);
     // Crear token
     const token = jwt.sign(
-      { id: user.id_usuario, rol: user.rol }, // Cambié 'role' a 'rol'
+      {
+        nombre: user.primer_nombre,
+        apellido: user.apellido_paterno,
+        rol: user.rol,
+        id: user.id_usuario, // Incluimos el id para referencia
+      },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
     // Redirección según el rol
-    if (user.rol === "Administrador") {
-      res.json({ token, redirectTo: "/admin-dashboard" });
-    } else if (user.rol === "Editor") {
-      res.json({ token, redirectTo: "/editor-dashboard" });
-    } else {
-      res.json({ token, redirectTo: "/user-dashboard" });
-    }
+    // Redirección según el rol
+    res.json({ token, redirectTo: "/dashboard" }); // Redirigir a la misma página de dashboard
   } catch (error) {
     console.error("Error en el login: ", error);
     res.status(500).send("Error en el servidor");

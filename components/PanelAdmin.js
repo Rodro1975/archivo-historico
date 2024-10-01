@@ -1,8 +1,10 @@
+//components/PanelAdmin.js
 "use client"; // Asegúrate de que este es un Client Component
 
 import React from "react";
 import { FaUsers, FaBook, FaFileAlt, FaChartBar } from "react-icons/fa"; // Importa los iconos
 import Image from "next/image"; // Asegúrate de importar el componente Image
+import Link from "next/link"; // Importa Link para la navegación
 
 const PanelAdmin = () => {
   return (
@@ -149,6 +151,12 @@ const PanelAdmin = () => {
           </div>
         </div>
       </div>
+      {/* Botón para Ver Catálogo Completo */}
+      <Link href="/completeCatalog" passHref>
+        <button className="bg-gold text-blue px-4 py-2 rounded mb-4">
+          Ver Catálogo Completo
+        </button>
+      </Link>
     </div>
   );
 };

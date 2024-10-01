@@ -30,7 +30,7 @@ export default function Login() {
         // Guarda el token en localStorage o sessionStorage
         localStorage.setItem("token", result.token);
         // Redirige a la página del framework
-        router.push("/framework");
+        router.push("/dashboard");
       } else {
         // Muestra el error si hay uno
         setError(result.message);

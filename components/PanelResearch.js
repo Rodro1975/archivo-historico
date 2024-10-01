@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FaSearch, FaFileDownload } from "react-icons/fa"; // Importa iconos
+import Link from "next/link"; // Importa Link para la navegación
 
 const PanelResearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -64,6 +65,12 @@ const PanelResearch = () => {
           ))
         )}
       </div>
+      {/* Botón para Ver Catálogo Completo */}
+      <Link href="/completeCatalog" passHref>
+        <button className="bg-gold text-blue px-4 py-2 rounded mb-4">
+          Ver Catálogo Completo
+        </button>
+      </Link>
     </div>
   );
 };

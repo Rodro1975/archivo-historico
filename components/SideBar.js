@@ -1,82 +1,81 @@
+// components/Sidebar.js
 import React from "react";
-import Link from "next/link"; // Asegúrate de importar Link desde next/link
-import { FaHome, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa"; // Importa los iconos
 
-const SideBar = ({ isOpen }) => {
-  const liStyle = {
-    listStyle: "none",
-    margin: "10px 0",
-  };
-
-  const linkStyle = {
-    textDecoration: "none",
-    color: "black",
-    display: "flex",
-    alignItems: "center",
-  };
-
-  const iconStyle = {
-    marginRight: "8px",
-  };
-
-  const logoutStyle = {
-    textDecoration: "none",
-    color: "red", // Cambia el color según tu preferencia
-    display: "flex",
-    alignItems: "center",
-  };
-
+const Sidebar = () => {
   return (
-    <div
+    <aside
+      className="sidebar"
       style={{
+        padding: "20px",
+        background: "var(--color-gold)",
         width: "250px",
-        height: "100vh",
-        backgroundColor: "lightgray",
-        position: "fixed",
-        top: 0,
-        right: isOpen ? 0 : "-250px", // Mover fuera de vista si está cerrado
-        transition: "right 0.3s ease",
-        overflowY: "auto", // Permitir desplazamiento si es necesario
+        marginTop: "60px", // Margen superior para que inicie debajo del header
       }}
     >
-      <h2>Menú</h2>
-      <nav>
-        <ul>
-          {/* Links del menú */}
-          <li style={liStyle}>
-            <Link href="/" style={linkStyle}>
-              <FaHome style={iconStyle} />
-              <span>Inicio</span>
-            </Link>
-          </li>
-          <li style={liStyle}>
-            <Link href="/profile" style={linkStyle}>
-              <FaUser style={iconStyle} />
-              <span>Perfil</span>
-            </Link>
-          </li>
-          <li style={liStyle}>
-            <Link href="/settings" style={linkStyle}>
-              <FaCog style={iconStyle} />
-              <span>Configuraciones</span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <h2>Navegación</h2>
+      <ul>
+        <li>
+          <a href="/books">Libros</a>
+        </li>
+        <li>
+          <a href="/research">Investigaciones</a>
+        </li>
+        <li>
+          <a href="/requests">Solicitudes</a>
+        </li>
+        <li>
+          <a href="/contact">Contactar</a>
+        </li>
+      </ul>
 
-      <div
-        style={{
-          borderTop: "2px solid var(--color-gold)",
-          paddingTop: "16px",
-        }}
-      >
-        <Link href="/logout" style={logoutStyle}>
-          <FaSignOutAlt style={{ marginRight: "8px" }} />
-          Cerrar Sesión
-        </Link>
-      </div>
-    </div>
+      <h2>Categorías</h2>
+      <ul>
+        <li>
+          <a href="/category/history">Historia</a>
+        </li>
+        <li>
+          <a href="/category/science">Ciencia</a>
+        </li>
+      </ul>
+
+      <h2>Últimos Documentos Consultados</h2>
+      <ul>
+        <li>
+          <a href="/document/1">Título del Documento 1</a>
+        </li>
+        <li>
+          <a href="/document/2">Título del Documento 2</a>
+        </li>
+      </ul>
+
+      <h2>Área de Formularios</h2>
+      <form style={{ display: "flex", flexDirection: "column" }}>
+        <label htmlFor="request">Solicitud:</label>
+        <textarea
+          id="request"
+          rows="3"
+          placeholder="Escribe tu solicitud aquí..."
+        ></textarea>
+
+        <button
+          type="submit"
+          style={{
+            marginTop: "10px",
+            padding: "10px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+          }}
+        >
+          Enviar Solicitud
+        </button>
+      </form>
+
+      <h2>Estadísticas del Archivo</h2>
+      <p>Total de Libros: 1500</p>
+    </aside>
   );
 };
 
-export default SideBar;
+export default Sidebar;

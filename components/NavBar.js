@@ -11,7 +11,7 @@ const NavBar = () => {
   const currentPath = usePathname(); // Aquí obtenemos la ruta actual
 
   return (
-    <nav className="sticky top-10 bg-white shadow-lg border-gray-200 dark:bg-gray-900">
+    <nav className="sticky top-0 bg-white shadow-lg border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logotipo UGTO */}
         <a

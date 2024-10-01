@@ -39,9 +39,11 @@ export async function POST(request) {
       {
         id: user.id_usuario, // ID del usuario
         rol: user.rol, // Rol del usuario
+        nombre: user.primer_nombre, // Primer nombre del usuario
+        apellido: user.apellido_paterno, // Apellido paterno del usuario
       },
       JWT_SECRET, // Clave secreta
-      { expiresIn: "10m" } // Token válido por 10 minutos
+      { expiresIn: "1h" } // Token válido por 1 hora
     );
 
     // Retornamos el token en la respuesta

@@ -27,24 +27,24 @@ export default function Home() {
         <Image
           src="/images/escudo-png.png"
           alt="Escudo UG"
-          width={128} // Requerido por Next.js
-          height={128} // Requerido por Next.js
-          className="mx-auto w-32 h-32 mb-6 animate__animated animate__bounce" // Añadir animación al escudo
+          width={256} // Requerido por Next.js
+          height={256} // Requerido por Next.js
+          className="mx-auto w-64 h-64 mb-6 animate__animated animate__bounce" // Añadir animación al escudo
         />
         {/* Overlay */}
         <div className="relative z-10 container mx-auto">
-          <h1 className="text-gold text-5xl font-extrabold leading-tight shadow-lg">
-            Bienvenido al Archivo Histórico de la Librería UG
+          <h1 className="text-gold text-6xl md:text-8xl font-extrabold leading-tight drop-shadow-lg">
+            Archivo Histórico de la Librería UG
           </h1>
           <p
-            className={`text-gold mt-4 text-lg animate__animated animate__bounceInDown`}
+            className={`text-gold mt-4 text-xl md:text-2xl animate__animated animate__bounceInDown`}
           >
             Explora nuestra colección y aprende más sobre la historia de la
             universidad.
           </p>
           <Link
             href="/login"
-            className="inline-block bg-yellow text-blue py-3 px-8 rounded-full font-bold hover:bg-gold hover:text-white transition duration-300 mt-10 shadow-lg"
+            className="inline-block bg-yellow text-blue py-4 px-12 rounded-full font-bold hover:bg-gold hover:text-white transition duration-300 mt-10 shadow-lg"
           >
             Inicia Sesión
           </Link>

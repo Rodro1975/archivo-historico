@@ -1,6 +1,5 @@
 // components/Dashboard.js
 import React, { useEffect, useState } from "react";
-import SideBar from "./SideBar";
 import PanelAdmin from "../components/PanelAdmin";
 import PanelEditor from "../components/PanelEditor"; // Importar el PanelEditor
 import PanelResearch from "../components/PanelResearch";
@@ -8,7 +7,6 @@ import PanelReader from "../components/PanelReader";
 import { decode } from "jsonwebtoken"; // Asegúrate de que está correctamente importado
 
 const DashboardLayout = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isEditor, setIsEditor] = useState(false); // Estado para verificar si es editor
   const [isResearch, setIsResearch] = useState(false);
@@ -60,19 +58,14 @@ const DashboardLayout = ({ children }) => {
     }
   }, []);
 
-  console.log("Es admin:", isAdmin); // Debug para ver el estado
-  console.log("Es editor:", isEditor); // Debug para ver el estado
-  console.log("Es research:", isResearch); // Debug para ver el estado
-  console.log("Es reader:", isReader); // Debug para ver el estado
-
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <main
         style={{
           flex: 1,
           padding: "20px",
-          marginRight: isSidebarOpen ? "250px" : "0",
-          transition: "margin-right 0.3s ease",
           background: "lightgray",
         }}
       >
@@ -87,20 +80,6 @@ const DashboardLayout = ({ children }) => {
         {/* Mostrar PanelReader si el usuario es lector */}
         {isReader && <PanelReader />}
       </main>
-
-      <button
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          zIndex: 1000,
-        }}
-      >
-        {isSidebarOpen ? "Cerrar Menú" : "Abrir Menú"}
-      </button>
-
-      <SideBar isOpen={isSidebarOpen} />
     </div>
   );
 };

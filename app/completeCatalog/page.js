@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa"; // Importa iconos
 import Image from "next/image"; // Importa el componente Image
 import WorkBar from "../../components/WorkBar";
+import SocialBar from "../../components/SocialBar";
 
 const CatalogoCompleto = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,6 +17,7 @@ const CatalogoCompleto = () => {
 
   return (
     <div className="flex flex-col p-4">
+      <SocialBar />
       {/* Barra de trabajo */}
       <div className="sticky top-0 z-50">
         <WorkBar />
