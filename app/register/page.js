@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 export default function Register() {
   const {
@@ -240,6 +241,8 @@ export default function Register() {
           </div>
         </div>
       </div>
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

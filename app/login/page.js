@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"; // Usa next/navigation en lugar de 
 import Head from "next/head";
 import Image from "next/image";
 import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -148,6 +149,8 @@ export default function Login() {
           </div>
         </div>
       </div>
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

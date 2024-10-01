@@ -6,6 +6,7 @@ import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import { useState, useEffect } from "react";
 import "animate.css";
+import Footer from "../../components/Footer";
 
 export default function Catalogo() {
   const [libros, setLibros] = useState([]);
@@ -209,6 +210,8 @@ export default function Catalogo() {
           </div>
         </section>
       </div>
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

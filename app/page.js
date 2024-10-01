@@ -6,9 +6,30 @@ import SocialBar from "../components/SocialBar"; // Importa la barra de redes so
 import NavBar from "../components/NavBar"; // Asegúrate de que la ruta sea correcta
 import Image from "next/image"; // Asegúrate de importar Image
 import Link from "next/link"; // Asegúrate de importar Link
-import "animate.css";
+import { useEffect, useState } from "react"; // Importa useEffect y useState para manejar el estado
+import Modal from "../components/Modal"; // Importa el componente Modal
+import Footer from "../components/Footer";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsModalOpen(true);
+    }, 2000); // Abre el modal después de 2 segundos
+
+    const handleScroll = () => {
+      setIsModalOpen(false); // Cierra el modal si el usuario se desplaza
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -44,33 +65,31 @@ export default function Home() {
           </p>
           <Link
             href="/login"
-            className="inline-block bg-yellow text-blue py-4 px-12 rounded-full font-bold hover:bg-gold hover:text-white transition duration-300 mt-10 shadow-lg"
+            className="inline-block bg-yellow text-blue py-4 px-12 rounded-full font-bold hover:bg-blue hover:text-yellow transition duration-300 mt-10 shadow-lg"
           >
             Inicia Sesión
           </Link>
         </div>
       </section>
 
-      {/* Barra de navegacion */}
+      {/* Barra de navegación */}
       <NavBar />
+
+      {/* Mostrar modal */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       <section className="featured-collections">
         <h2>Colecciones Destacadas</h2>
-        {/*  Muestra aquí tus colecciones */}
+        {/* Muestra aquí tus colecciones */}
       </section>
 
       <section className="news-events">
         <h2>Noticias y Eventos</h2>
-        {/*  Noticias Recientes */}
+        {/* Noticias Recientes */}
       </section>
 
-      <footer className="footer">
-        <p>
-          &copy; 2024 Archivo Histórico de la UG | Todos los derechos
-          reservados.
-        </p>
-        {/*  Información adicional */}
-      </footer>
+      {/* Footer */}
+      <Footer />
     </>
   );
 }
