@@ -42,8 +42,8 @@ const Header = () => {
         zIndex: 10,
         top: 0,
         left: 0,
-        background: "var(--color-blue)", // Fondo con el color azul personalizado
-        color: "var(--color-yellow)", // Texto amarillo personalizado
+        background: "var(--color-gray)", // Fondo con el color azul personalizado
+        color: "var(--color-navy)", // Texto dorado personalizado
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Sombra ligera
       }}
     >
@@ -64,7 +64,7 @@ const Header = () => {
             fontFamily: "'Novecento Wide', sans-serif", // Usando la fuente personalizada
           }}
         >
-          Dashboard
+          Archivo Histórico
         </h1>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <DarkMode />

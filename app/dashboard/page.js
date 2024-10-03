@@ -7,6 +7,7 @@ import PanelReader from "../../components/PanelReader";
 import { decode } from "jsonwebtoken"; // Asegúrate de que está correctamente importado
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/SideBar"; // Importa la Sidebar
+import FooterDash from "../../components/FooterDash"; // Importa el footer
 
 const DashboardPage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -41,31 +42,33 @@ const DashboardPage = () => {
 
   return (
     <div
-      style={{ display: "flex", backgroundColor: "orange", minHeight: "100vh" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        backgroundColor: "white",
+      }}
     >
       <Header /> {/* Aquí se integra el Header */}
-      <Sidebar /> {/* Aquí se integra la Sidebar */}
-      <div style={{ flex: 1, padding: "20px", marginTop: "60px" }}>
-        {" "}
-        {/* Flex para contenido principal */}
-        <h1 style={{ textAlign: "center", color: "white" }}>
-          Bienvenido al Dashboard
-        </h1>
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <p style={{ color: "white" }}>
-            Aquí es donde irán tus componentes o información específica del
-            dashboard.
-          </p>
-          {/* Mostrar PanelAdmin si el usuario es administrador */}
-          {isAdmin && <PanelAdmin />}
-          {/* Mostrar PanelEditor si el usuario es editor */}
-          {isEditor && <PanelEditor />}
-          {/* Mostrar PanelResearch si el usuario es investigador */}
-          {isResearch && <PanelResearch />}
-          {/* Mostrar PanelReader si el usuario es lector */}
-          {isReader && <PanelReader />}
+      <div style={{ display: "flex", flex: 1 }}>
+        <Sidebar /> {/* Aquí se integra la Sidebar */}
+        <div style={{ flex: 1, padding: "20px", marginTop: "60px" }}>
+          <h1
+            style={{ textAlign: "center", color: "navy", fontWeight: "bold" }}
+          >
+            Bienvenido a tu espacio de trabajo
+          </h1>
+          <div style={{ marginTop: "20px", textAlign: "center" }}>
+            {/* Aquí van los componentes o información específica de cada rol */}
+            {isAdmin && <PanelAdmin />}
+            {isEditor && <PanelEditor />}
+            {isResearch && <PanelResearch />}
+            {isReader && <PanelReader />}
+          </div>
         </div>
       </div>
+      <FooterDash />{" "}
+      {/* Mueve el Footer aquí para asegurarte de que esté al final */}
     </div>
   );
 };

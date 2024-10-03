@@ -11,6 +11,7 @@ module.exports = {
         blue: "var(--color-blue)",
         yellow: "var(--color-yellow)",
         gold: "var(--color-gold)",
+        orange: "var(--color-orange)",
       },
       fontFamily: {
         "geist-sans": ["var(--font-geist-sans)"],

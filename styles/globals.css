@@ -9,6 +9,9 @@
   --color-blue: #003c71; /* Pantone 540c */
   --color-yellow: #f6e70f; /* Pantone 121c */
   --color-gold: #e3d8b0; /* Pantone 451c */
+  --color-gray: #e5e7eb; /* gray-200 */
+  --color-orange: #ffa500; /* orange */
+  --color-navy: #1f2937; /* gray-900 */
 }
 
 body {
@@ -59,6 +62,10 @@ h3 {
 
 .bg-gold {
   background-color: var(--color-gold);
+}
+
+.bg-orange {
+  background-color: var(--color-orange);
 }
 
 /* Específico para iconos */
