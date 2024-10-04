@@ -1,4 +1,19 @@
+//app\api\libros\route.js
 import pool from "../../../config/db"; // Asegúrate de que la ruta sea correcta
+
+// Manejo de la solicitud GET
+export async function GET(req) {
+  try {
+    const [rows] = await pool.query("SELECT * FROM libros");
+    return new Response(JSON.stringify(rows), { status: 200 });
+  } catch (error) {
+    console.error("Error al obtener los libros:", error);
+    return new Response(
+      JSON.stringify({ message: "Error en el servidor", error: error.message }),
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(req) {
   const formData = await req.formData(); // Manejo de FormData

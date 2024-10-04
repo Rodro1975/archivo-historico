@@ -15,9 +15,9 @@ export default function RootLayout({ children }) {
     const getTitle = () => {
       switch (pathname) {
         case "/catalog":
-          return "Catálogo - Archivo Histórico Librería UG";
+          return "Galeria - Archivo Histórico Librería UG";
         case "/completeCatalog":
-          return "Catálogo Completo - Archivo Histórico Librería UG";
+          return "Colección Documental - Archivo Histórico Librería UG";
         case "/dashboard":
           return "Panel de Control - Archivo Histórico Librería UG";
         case "/login":

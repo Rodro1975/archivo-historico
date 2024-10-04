@@ -7,6 +7,7 @@ import NavBar from "../../components/NavBar";
 import { useState, useEffect } from "react";
 import "animate.css";
 import Footer from "../../components/Footer";
+import ModalGalery from "../../components/ModalGalery";
 
 export default function Catalogo() {
   const [libros, setLibros] = useState([]);
@@ -16,12 +17,22 @@ export default function Catalogo() {
   const [isInfoBarVisible, setIsInfoBarVisible] = useState(true); // Estado para controlar la visibilidad de la barra
   const [isAnimatingX, setIsAnimatingX] = useState(false); // Estado para controlar la animación de la x
   const [isAnimatingText, setIsAnimatingText] = useState(false); // Estado para controlar la animación del texto
+  const [selectedBook, setSelectedBook] = useState(null); // Estado para almacenar el libro seleccionado
 
   useEffect(() => {
     const obtenerLibros = async () => {
-      const response = await fetch("/api/libros"); // Endpoint para obtener libros
-      const data = await response.json();
-      setLibros(data);
+      try {
+        const response = await fetch("/api/libros");
+
+        if (!response.ok) {
+          throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setLibros(data);
+      } catch (error) {
+        console.error("Error al obtener los libros:", error);
+      }
     };
 
     obtenerLibros();
@@ -45,19 +56,28 @@ export default function Catalogo() {
     setTimeout(() => {
       setIsInfoBarVisible(false); // Oculta la barra después de la animación
       setIsAnimatingX(false); // Resetea el estado de animación
-    }, 1000); // Duración de la animación (ajusta según sea necesario)
+    }, 2000); // Duración de la animación (ajusta según sea necesario)
+  };
+
+  const manejarClickTitulo = (libro) => {
+    setSelectedBook(libro); // Establece el libro seleccionado
+  };
+
+  const cerrarModal = () => {
+    setSelectedBook(null); // Restablece el libro seleccionado al cerrar el modal
   };
 
   return (
     <>
       <Head>
-        <title>Catálogo - Archivo Histórico Librería UG</title>
+        <title>Galeria - Archivo Histórico Librería UG</title>
       </Head>
       <NavBar />
-      {/* seccion de información */}
+      {/* Sección de Información */}
       <section className="px-0 py-12 mx-auto max-w-7xl sm:px-4 overflow-visible">
         <div className="grid items-center grid-cols-1 gap-10 px-4 py-6 text-blue bg-gradient-to-r from-yellow to-gray-200 border-pink-100 rounded-none card card-body sm:rounded-lg md:px-10 md:grid-cols-5 lg:gap-0">
-          <div className="col-span-1 md:col-span-3">
+          <div className="col-span-1 md:col-span-2">
+            {/* Reducimos el ancho de la columna de texto */}
             <h2 className="mb-3 font-serif text-2xl font-normal leading-tight lg:text-3xl">
               Explora nuestra colección de libros y recursos disponibles.
             </h2>
@@ -66,18 +86,21 @@ export default function Catalogo() {
             </p>
             <a
               href="/login"
-              className="w-full text-blue border border-blue bg-transparent hover:bg-blue hover:text-white transition duration-200 shadow-lg py-2 px-4 rounded-lg text-center sm:w-auto"
+              className="w-full text-blue border border-blue bg-transparent hover:bg-blue hover:text-white transition duration-200 shadow-lg py-2 px-4 rounded-full text-center sm:w-auto"
             >
               Comienza a explorar
             </a>
           </div>
-          <div className="col-span-1 md:col-span-2 md:flex md:justify-center">
-            {/* Asegúrate de que el contenedor ocupe todo el ancho disponible */}
-            <div className="relative w-full h-auto">
+          <div className="col-span-1 md:col-span-3 md:flex md:justify-center">
+            {/* Aumentamos el ancho de la columna de imagen */}
+            {/* Contenedor de la imagen que ocupa más espacio en la sección */}
+            <div className="relative w-full h-auto ml-6">
+              {" "}
+              {/* Añadido margen izquierdo */}
               <Image
                 src="/images/libreriaUg.png"
                 alt="Libros"
-                className="w-full h-auto object-cover transition-transform duration-300 transform hover:scale-105"
+                className="w-full h-auto object-cover transition-transform duration-300 transform hover:scale-105 rounded-lg"
                 width={500}
                 height={300}
               />
@@ -118,7 +141,7 @@ export default function Catalogo() {
             </div>
             <a
               href="/register"
-              className="flex-none rounded inline-block bg-gray-900 px-3.5 py-1 text-sm font-medium text-gold shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+              className="flex-none rounded-full inline-block bg-gray-900 px-3.5 py-1 text-sm font-medium text-gold shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
             >
               Regístrate ahora <span aria-hidden="true">&rarr;</span>
             </a>
@@ -149,60 +172,73 @@ export default function Catalogo() {
         </div>
       )}
 
-      {/* Catalogo */}
+      {/* Catálogo */}
       <div className="catalogo-container">
         <section className="px-4 py-24 mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {librosAmostrar.map((libro, index) => (
               <div
                 key={index}
-                className={`bg-${
-                  index % 2 === 0 ? "gold" : "gray"
-                }-200 p-4 rounded`}
+                className={`transition-transform duration-300 ease-in-out transform hover:scale-105 ${
+                  index % 2 === 0
+                    ? "bg-gradient-to-b from-yellow to-orange"
+                    : "bg-gradient-to-b from-gold to-yellow"
+                } p-6 rounded-lg shadow-lg hover:shadow-xl`}
               >
-                <a href="#">
+                <div className="flex justify-center mb-4">
                   <Image
-                    src="/images/escudo-png.png"
-                    alt="Escudo"
-                    className="h-20"
-                    width={80}
-                    height={80}
+                    src={`/uploads/images/${libro.portada}`}
+                    alt={libro.titulo}
+                    className="rounded-lg shadow-md"
+                    width={240}
+                    height={320}
                     priority
                   />
-                </a>
-                <h2 className="mb-2 text-lg font-semibold text-gray-900">
-                  <a href="#" className="text-gray-900 hover:text-purple-700">
+                </div>
+                <h1 className="mb-2 text-xl font-extrabold text-gray-900 text-center hover:text-white transition-colors duration-300">
+                  <span
+                    className="hover:underline cursor-pointer"
+                    onClick={() => manejarClickTitulo(libro)} // Pasa el libro al hacer clic
+                  >
                     {libro.titulo}
-                  </a>
-                </h2>
-                <p className="mb-3 text-sm font-normal text-gray-500">
-                  {libro.contraPortada} {/* Breve descripción */}
+                  </span>
+                </h1>
+                <p className="mb-3 text-sm font-normal text-gray-700 text-center">
+                  {libro.contraPortada}
                 </p>
-
-                <p className="mb-3 text-sm font-normal text-gray-500">
+                <p className="mb-3 text-sm font-normal text-gray-600 text-center">
                   <a
                     href="#"
-                    className="font-medium text-gray-900 hover:text-purple-700"
+                    className="font-medium text-gray-900 hover:text-purple-700 transition-colors duration-300"
                   >
                     {libro.autor}
                   </a>
-                  {libro.fecha_registro} {/* Fecha de publicación */}
+                  <span> - {libro.fecha_registro}</span>
                 </p>
               </div>
             ))}
           </div>
 
+          {/* Modal para mostrar información del libro seleccionado */}
+          {selectedBook && (
+            <ModalGalery
+              isOpen={Boolean(selectedBook)}
+              onClose={cerrarModal}
+              libro={selectedBook}
+            />
+          )}
+
           <div className="flex flex-col items-center justify-center mt-20 space-x-0 space-y-2 md:space-x-2 md:space-y-0 md:flex-row">
             <button
               onClick={manejarPaginaAnterior}
-              className="w-full rounded-full bg-yellow text-blue px-6 py-3 md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="w-full rounded-full bg-yellow text-blue px-6 py-3 md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-md hover:bg-orange"
               disabled={pagina === 0}
             >
               Página Anterior
             </button>
             <button
               onClick={manejarPaginaSiguiente}
-              className="w-full rounded-full bg-yellow text-blue px-6 py-3 md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="w-full rounded-full bg-yellow text-blue px-6 py-3 md:w-auto transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-md hover:bg-orange"
               disabled={pagina === totalPaginas - 1}
             >
               Página Siguiente
