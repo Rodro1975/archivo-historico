@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="mt-0 relative h-auto bg-fixed bg-cover bg-center"
+      className="mt-auto relative h-auto bg-fixed bg-cover bg-center"
       style={{ backgroundImage: "url('/images/footer.jpg')" }}
     >
       {/* Cubierta con degradado de gris oscuro a gris medio */}

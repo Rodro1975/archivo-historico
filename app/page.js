@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen w-full">
       <Head>
         <title>Página Principal - Archivo Histórico Librería UG</title>
       </Head>
@@ -90,6 +90,6 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
-    </>
+    </div>
   );
 }
