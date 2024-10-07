@@ -98,9 +98,12 @@ const PanelAdmin = () => {
             className="mr-4"
           />
           <div>
-            <h2 className="text-2xl font-bold text-blue transition-colors duration-300 hover:text-[#FFD700]">
-              Libros
-            </h2>
+            {/* Enlace con href a /libros */}
+            <Link href="/libros">
+              <h2 className="text-2xl font-bold text-blue transition-colors duration-300 hover:text-[#FFD700]">
+                Libros
+              </h2>
+            </Link>
             <p className="text-blue text-sm">
               Administra los libros y publicaciones del sistema.
             </p>

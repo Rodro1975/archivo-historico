@@ -7,7 +7,7 @@ const ModalGalery = ({ isOpen, onClose, libro }) => {
   if (!isOpen || !libro) return null;
 
   return (
-    <section className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <section className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-4 relative">
         {/* Botón de cerrar con ícono de Font Awesome */}
         <button

@@ -1,8 +1,7 @@
-// components/WorkBar.js
 import React, { useEffect, useState } from "react";
-import Link from "next/link"; // Importa Link para la navegación
-import Image from "next/image"; // Importa el componente Image
-import { decode } from "jsonwebtoken"; // Importar la decodificación del token
+import Link from "next/link";
+import Image from "next/image";
+import { decode } from "jsonwebtoken";
 
 const WorkBar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -32,12 +31,12 @@ const WorkBar = () => {
 
   // Función para cerrar sesión
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Eliminar el token del almacenamiento local
-    window.location.href = "/login"; // Redirigir a la página de inicio de sesión
+    localStorage.removeItem("token");
+    window.location.href = "/login";
   };
 
   return (
-    <div className="bg-white shadow-lg border-gray-200 dark:bg-gray-900 text-blue h-48 flex flex-col items-center justify-center">
+    <div className="bg-white shadow-lg border-[#E5E7EB] dark:bg-[#111827] text-[#1E3A8A] h-48 flex flex-col items-center justify-center">
       {/* Logo en el centro */}
       <div className="flex items-center mb-8">
         <Image
@@ -50,43 +49,64 @@ const WorkBar = () => {
 
       {/* Enlaces específicos para cada tipo de usuario */}
       <div className="flex space-x-8">
-        <Link href="/" className="hover:text-gold font-bold">
+        <Link href="/" className="hover:text-[#FFD700] font-bold">
           Inicio
         </Link>
         {isAdmin && (
           <>
-            <Link href="/admin/users" className="hover:text-gold font-bold">
+            <Link
+              href="/admin/users"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Gestionar Usuarios
             </Link>
-            <Link href="/admin/books" className="hover:text-gold font-bold">
+            <Link
+              href="/admin/books"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Gestionar Libros
             </Link>
-            <Link href="/admin/reports" className="hover:text-gold font-bold">
+            <Link
+              href="/admin/reports"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Reporte 1
             </Link>
-            <Link href="/admin/reports2" className="hover:text-gold font-bold">
+            <Link
+              href="/admin/reports2"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Reporte 2
             </Link>
           </>
         )}
         {isEditor && (
           <>
-            <Link href="/editor/books" className="hover:text-gold font-bold">
+            <Link
+              href="/editor/books"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Modificar Libros
             </Link>
-            <Link href="/editor/reports" className="hover:text-gold font-bold">
+            <Link
+              href="/editor/reports"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Descargar Reportes
             </Link>
           </>
         )}
         {isResearch && (
           <>
-            <Link href="/research/search" className="hover:text-gold font-bold">
+            <Link
+              href="/research/search"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Búsqueda Avanzada
             </Link>
             <Link
               href="/research/statistics"
-              className="hover:text-gold font-bold"
+              className="hover:text-[#FFD700] font-bold"
             >
               Estadísticas
             </Link>
@@ -94,17 +114,23 @@ const WorkBar = () => {
         )}
         {isReader && (
           <>
-            <Link href="/reader/search" className="hover:text-gold font-bold">
+            <Link
+              href="/reader/search"
+              className="hover:text-[#FFD700] font-bold"
+            >
               Buscar Publicaciones
             </Link>
           </>
         )}
-        <Link href="/dashboard" className="hover:text-gold font-bold">
+        <Link href="/dashboard" className="hover:text-[#FFD700] font-bold">
           Volver al Dashboard
         </Link>
 
         {/* Botón para cerrar sesión */}
-        <button onClick={handleLogout} className="hover:text-gold font-bold">
+        <button
+          onClick={handleLogout}
+          className="hover:text-[#FFD700] font-bold"
+        >
           Cerrar Sesión
         </button>
       </div>

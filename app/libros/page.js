@@ -38,7 +38,7 @@ const LibroPage = () => {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl mb-6">
-        Formulario de registro para el Archivo Histórico
+        Formulario de Registro para el Archivo Histórico de la Librería de la UG
       </h1>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
