@@ -53,7 +53,7 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="/terminos-condiciones"
                   onClick={() => {
                     /* Lógica para abrir modal de Términos y condiciones */
                   }}
@@ -64,7 +64,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/faqs"
                   onClick={() => {
                     /* Lógica para abrir modal de FAQs */
                   }}
@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/contribuciones"
                   onClick={() => {
                     /* Lógica para abrir modal de Agradecimientos y contribuciones */
                   }}

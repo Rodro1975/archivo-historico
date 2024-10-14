@@ -121,6 +121,14 @@ const PrivacyPolicy = () => {
         institucional en Internet: privacidad y en CLICK AQUÍ privacidad y en
         CLICK AQUÍ.
       </p>
+      <p className="mt-6">
+        <a
+          href="/"
+          className="font-bold text-yellow hover:text-gold transition duration-300"
+        >
+          Regresar al inicio
+        </a>
+      </p>
     </div>
   );
 };

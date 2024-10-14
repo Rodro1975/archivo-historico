@@ -5,19 +5,22 @@ export async function POST(req) {
     const body = await req.json();
     const { email } = body;
 
+    console.log("MAILGUN_API_KEY:", process.env.MAILGUN_API_KEY);
+    console.log("MAILGUN_DOMAIN:", process.env.MAILGUN_DOMAIN);
+
     // Solicitud a la API de Mailgun usando fetch
     const response = await fetch(
-      `https://api.mailgun.net/v3/sandboxd401e549c2874f159d42fa8ddce27b54.mailgun.org/messages`,
+      `https://api.mailgun.net/v3/${process.env.MAILGUN_DOMAIN}/messages`,
       {
         method: "POST",
         headers: {
           Authorization: `Basic ${Buffer.from(
-            `api:c9a2a07eeabf5684fe48881f16f09dcc-d010bdaf-323a2ac7`
+            `api:${process.env.MAILGUN_API_KEY}`
           ).toString("base64")}`,
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: new URLSearchParams({
-          from: "noreply@tu-dominio.com",
+          from: `noreply@${process.env.MAILGUN_DOMAIN}`, // Usa el dominio verificado
           to: "rodrigoordonez@nube.unadmexico.mx",
           subject: "Nueva suscripción",
           text: `Nuevo suscriptor: ${email}`,
