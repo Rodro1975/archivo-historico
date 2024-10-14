@@ -4,10 +4,29 @@ import Image from "next/image";
 const Footer = () => {
   const [email, setEmail] = useState("");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    console.log("Correo electrónico suscrito:", email);
-    setEmail(""); // Limpiar el campo después de la suscripción
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }), // Mandamos el correo ingresado
+      });
+
+      if (response.ok) {
+        console.log("Correo electrónico suscrito:", email);
+        setEmail(""); // Limpiar el campo después de la suscripción
+        alert("¡Gracias por suscribirte!");
+      } else {
+        alert("Error al suscribirte. Inténtalo de nuevo.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al suscribirte. Inténtalo de nuevo.");
+    }
   };
 
   return (
@@ -25,15 +44,13 @@ const Footer = () => {
             <ul className="space-y-2 text-blue">
               <li>
                 <a
-                  href="#"
-                  onClick={() => {
-                    /* Lógica para abrir modal de Aviso de privacidad */
-                  }}
+                  href="/privacy-policy" // Cambia el href aquí para que apunte a la página de aviso de privacidad
                   className="hover:text-white transition duration-300"
                 >
                   Aviso de privacidad
                 </a>
               </li>
+
               <li>
                 <a
                   href="#"
@@ -95,7 +112,7 @@ const Footer = () => {
             <h2 className="text-blue text-xl font-bold mb-2 text-center md:text-right">
               Suscripción a boletín de noticias
             </h2>
-            <p className="text-gray-400 text-center md:text-right">
+            <p className="text-gray-200 text-center md:text-right">
               Tu dirección de correo electrónico es 100% segura para nosotros.
             </p>
             <form

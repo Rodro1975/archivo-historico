@@ -76,7 +76,7 @@ h3 {
 /* Carrusel 3D */
 .embla {
   overflow: hidden;
-  width: 1200px; /* Define el ancho del carrusel */
+  width: 100%; /* Define el ancho del carrusel */
   height: 400px; /* Define la altura del carrusel */
   margin: 0 auto; /* Centrar el carrusel en la página */
   perspective: 1000px; /* Para la sensación de profundidad */

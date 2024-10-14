@@ -76,14 +76,14 @@ export default function Home() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       <section className="news-events relative py-48 text-center bg-fixed bg-cover bg-center">
-        <h2 className="text-3xl font-bold text-center mb-6">
+        <h2 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-yellow to-orange bg-clip-text text-transparent">
           Noticias y Eventos
         </h2>
         <Carrusel slides={slides} />
       </section>
 
       <section className="collections-highlighted py-8">
-        <h2 className="text-3xl font-bold text-center mb-6">
+        <h2 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-yellow to-orange bg-clip-text text-transparent">
           Colecciones Destacadas
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -168,7 +168,7 @@ export default function Home() {
       </section>
 
       <section className="featured-month py-8">
-        <h2 className="text-3xl font-bold mb-4 text-center">
+        <h2 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-yellow to-orange bg-clip-text text-transparent">
           Colección Destacada del Mes
         </h2>
         <div className="p-6 bg-gray-100 rounded-lg shadow-md">
@@ -190,8 +190,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="personal-stories py-8 bg-gray-100">
-        <h2 className="text-3xl text-blue font-bold text-center mb-6">
+      <section className="personal-stories py-8">
+        <h2 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-yellow to-orange bg-clip-text text-transparent">
           Historias Detrás de las Colecciones
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
