@@ -1,3 +1,6 @@
+// Footer.js
+"use client"; // Indica que este es un Client Component
+
 import React, { useState } from "react";
 import Image from "next/image";
 

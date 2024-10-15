@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../components/Footer";
 
 const Contribuciones = () => {
   return (
@@ -152,6 +153,8 @@ const Contribuciones = () => {
           </a>
         </p>
       </div>
+      {/* Footer */}
+      <Footer />
     </>
   );
 };
