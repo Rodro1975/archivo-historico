@@ -75,7 +75,7 @@ const AboutUsPage = () => {
                 <h3 className="text-xl font-bold">
                   Elba Margarita Sánchez Rolón
                 </h3>
-                <p className="text-gray-600">Director del Archivo</p>
+                <p className="text-gray-600">Directora del Archivo</p>
               </div>
             </div>
             {/* Card 2 */}
