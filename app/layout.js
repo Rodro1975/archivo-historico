@@ -15,17 +15,17 @@ export default function RootLayout({ children }) {
     const getTitle = () => {
       switch (pathname) {
         case "/catalog":
-          return "Galeria - Archivo Histórico Librería UG";
+          return "Galeria - Archivo Histórico de la Editorial UG";
         case "/completeCatalog":
-          return "Colección Documental - Archivo Histórico Librería UG";
+          return "Colección Documental - Archivo Histórico de la Editorial UG";
         case "/dashboard":
-          return "Panel de Control - Archivo Histórico Librería UG";
+          return "Panel de Control - Archivo Histórico de la Editorial UG";
         case "/login":
-          return "Iniciar Sesión - Archivo Histórico Librería UG";
+          return "Iniciar Sesión - Archivo Histórico de la Editorial UG";
         case "/register":
-          return "Registro - Archivo Histórico Librería UG";
+          return "Registro - Archivo Histórico de la Editorial UG";
         default:
-          return "Archivo Histórico Librería UG"; // Título por defecto
+          return "Archivo Histórico de la Editorial UG"; // Título por defecto
       }
     };
 

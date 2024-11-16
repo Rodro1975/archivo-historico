@@ -38,7 +38,7 @@ const FooterDash = () => {
             </a>
           </p>
           <p className="text-sm">
-            © 2024 Librería de la Universidad de Guanajuato. Todos los derechos
+            © 2024 Archivo Histórico Editorial UG. Todos los derechos
             reservados.
           </p>
         </div>

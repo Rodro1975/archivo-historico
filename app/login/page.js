@@ -135,17 +135,6 @@ export default function Login() {
                 <span className="inline-block">LinkedIn</span>
               </button>
             </div>
-
-            {/* Enlace "No tienes cuenta" */}
-            <div className="py-5 text-center">
-              <span className="text-blue text-sm">¿No tienes una cuenta?</span>
-              <a
-                href="/register"
-                className="text-yellow hover:text-blue text-sm font-semibold ml-2"
-              >
-                Regístrate
-              </a>
-            </div>
           </div>
         </div>
       </div>

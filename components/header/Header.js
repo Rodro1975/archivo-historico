@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DarkMode from "./DarkMode";
 import MessagesDropdown from "./MessagesDropdown";
 import ModificationsDropdown from "./ModificationsDropdown";
 import UserProfile from "./UserProfile"; // Asegúrate de que la ruta sea correcta
@@ -67,7 +66,6 @@ const Header = () => {
           Archivo Histórico
         </h1>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <DarkMode />
           <MessagesDropdown />
           <ModificationsDropdown />
           <UserProfile user={user} /> {/* Integración del UserProfile */}

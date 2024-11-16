@@ -85,10 +85,11 @@ export default function Catalogo() {
               Encuentra libros que te inspiren y enriquezcan tu conocimiento.
             </p>
             <a
-              href="/login"
+              href="https://libreriaug.ugto.mx/"
+              target="_blank" // Abre el enlace en una nueva pestaña
               className="w-full text-blue border border-blue bg-transparent hover:bg-blue hover:text-white transition duration-200 shadow-lg py-2 px-4 rounded-full text-center sm:w-auto"
             >
-              Comienza a explorar
+              ¡COMPRA UN LIBRO!
             </a>
           </div>
           <div className="col-span-1 md:col-span-3 md:flex md:justify-center">
@@ -136,14 +137,14 @@ export default function Catalogo() {
               >
                 <circle cx="1" cy="1" r="1" />
               </svg>
-              ¡Únete al Archivo Histórico de la UG y descubre un fascinante
-              viaje a través del tiempo!
+              Visita la Librería UG y encuentra tu próxima lectura favorita.
             </div>
             <a
-              href="/register"
+              href="https://libreriaug.ugto.mx/"
+              target="_blank" // Abre el enlace en una nueva pestaña
               className="flex-none rounded-full inline-block bg-gray-900 px-3.5 py-1 text-sm font-medium text-gold shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
             >
-              Regístrate ahora <span aria-hidden="true">&rarr;</span>
+              ¡Comprar Ahora! <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
           <div className="flex flex-1 justify-end">

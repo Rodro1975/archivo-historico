@@ -123,9 +123,11 @@ const PanelAdmin = () => {
             className="mr-4"
           />
           <div>
-            <h2 className="text-2xl font-bold text-blue transition-colors duration-300 hover:text-[#FFD700]">
-              Usuarios
-            </h2>
+            <Link href="/register">
+              <h2 className="text-2xl font-bold text-blue transition-colors duration-300 hover:text-[#FFD700]">
+                Usuarios
+              </h2>
+            </Link>
             <p className="text-blue text-sm">
               Administra los usuarios del sistema.
             </p>

@@ -35,11 +35,22 @@ const LibroPage = () => {
     }
   };
 
+  const handleBackToDashboard = () => {
+    router.push("/dashboard");
+  };
+
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl mb-6">
         Formulario de Registro para el Archivo Histórico de la Librería de la UG
       </h1>
+      {/* Botón para regresar al dashboard */}
+      <a
+        href="/dashboard"
+        className="bg-gold hover:bg-yellow text-blue font-bold py-2 px-4 rounded mb-4 inline-block"
+      >
+        Regresar al Dashboard
+      </a>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       <BookForm onSubmit={handleFormSubmit} />

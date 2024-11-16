@@ -32,7 +32,6 @@ const CatalogoCompleto = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <SocialBar />
       <div className="sticky top-0 z-50">
         <WorkBar />
       </div>
@@ -55,10 +54,11 @@ const CatalogoCompleto = () => {
           style={{ marginTop: "-250px" }}
         >
           <h1 className="text-6xl md:text-8xl font-extrabold leading-tight drop-shadow-xl">
-            Archivo Histórico
+            Archivo Histórico Editorial UG
           </h1>
-          <p className="mt-4 text-xl md:text-2xl text-red-300 drop-shadow-lg">
-            Explora nuestra colección de libros.
+          <p className="mt-4 text-xl md:text-2xl text-white drop-shadow-lg">
+            Accede a una vasta colección de libros históricos. Colabora, edita y
+            enriquece el legado editorial que define nuestra historia.
           </p>
         </div>
       </div>

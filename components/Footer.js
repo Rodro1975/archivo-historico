@@ -143,7 +143,7 @@ const Footer = () => {
         {/* Información adicional centrada al final */}
         <div className="mt-6 border-t border-gray-200 pt-4 text-center text-gray-400">
           <p>
-            &copy; 2024 Archivo Histórico de la UG | Todos los derechos
+            &copy; 2024 Archivo Histórico Editorial UG | Todos los derechos
             reservados. || Diseño de Rodrigo Iván Ordoñez Chávez
           </p>
         </div>

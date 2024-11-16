@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen w-full">
       <Head>
-        <title>Página Principal - Archivo Histórico Librería UG</title>
+        <title>Página Principal - Archivo Histórico Editorial UG</title>
       </Head>
       <SocialBar />
       <section
@@ -57,11 +57,11 @@ export default function Home() {
         />
         <div className="relative z-10 container mx-auto">
           <h1 className="text-gold text-6xl md:text-8xl font-extrabold leading-tight drop-shadow-lg">
-            Archivo Histórico de la Librería UG
+            Archivo Histórico de la Editorial UG
           </h1>
           <p className="text-gold mt-4 text-xl md:text-2xl">
             Explora nuestra colección y aprende más sobre la historia de la
-            universidad.
+            Editorial de la UG.
           </p>
           <Link
             href="/login"

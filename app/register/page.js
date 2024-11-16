@@ -5,8 +5,9 @@ import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import NavBar from "../../components/NavBar";
+
 import Footer from "../../components/Footer";
+import WorkBar from "@/components/WorkBar";
 
 export default function Register() {
   const {
@@ -45,7 +46,7 @@ export default function Register() {
       <Head>
         <title>Registro - Archivo Histórico Librería UG</title>
       </Head>
-      <NavBar />
+      <WorkBar />
       <div className="flex items-center justify-center min-h-screen pt-16 pb-16">
         {" "}
         {/* formulario de registro */}

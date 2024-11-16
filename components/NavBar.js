@@ -83,7 +83,7 @@ const NavBar = () => {
             {[
               { path: "/", label: "Página Principal" },
               { path: "/login", label: "Inicio de Sesión" },
-              { path: "/register", label: "Registrarse" },
+              { path: "/aboutUs", label: "Acerca de" }, //aqui se creara una pagina about us
               { path: "/catalog", label: "Galería" },
             ].map(({ path, label }, index) => (
               <li key={index}>

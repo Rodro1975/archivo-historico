@@ -426,24 +426,7 @@ const BookForm = ({ onSubmit }) => {
               <option value="colectiva">Colectiva</option>
             </select>
           </div>
-          <div className="mb-4">
-            <label
-              htmlFor="contraPortada"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Contra Portada
-            </label>
-            <textarea
-              id="contraPortada"
-              name="contraPortada"
-              value={formData.contraPortada}
-              onChange={handleChange}
-              required
-              className="input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Escribe la Contraportada"
-              rows="4" // Puedes ajustar el número de filas según sea necesario
-            />
-          </div>
+
           <div className="mb-4">
             <label
               htmlFor="dimensiones"
@@ -516,6 +499,7 @@ const BookForm = ({ onSubmit }) => {
               placeholder="Ingresa el Peso en Gramos"
             />
           </div>
+
           <div className="mb-4">
             <label
               htmlFor="tiraje_o_ibd"
@@ -523,23 +507,18 @@ const BookForm = ({ onSubmit }) => {
             >
               Tiraje ó IBD
             </label>
-            <select
+            <input
+              type="text"
               id="tiraje_o_ibd"
               name="tiraje_o_ibd"
-              value={formData.tiraje_o_ibd}
+              value={formData.idioma}
               onChange={handleChange}
               required
               className="input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            >
-              <option value="" disabled>
-                Selecciona una opción
-              </option>
-              <option value="tiraje">Tiraje</option>
-              <option value="impresion_bajo_demanda">
-                Impresión Bajo Demanda
-              </option>
-            </select>
+              placeholder="Ingresa el Tiraje ó IDB"
+            />
           </div>
+
           <div className="mb-4">
             <label
               htmlFor="esTraduccion"
@@ -588,7 +567,7 @@ const BookForm = ({ onSubmit }) => {
                 onChange={handleChange}
                 className="form-checkbox h-5 w-5 text-blue-600"
               />
-              <span className="ml-2">Deposito Legal</span>
+              <span className="ml-2">Depósito Legal</span>
             </label>
           </div>
 
@@ -628,6 +607,25 @@ const BookForm = ({ onSubmit }) => {
               className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue file:text-white hover:file:bg-gold"
             />
           </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="deposito_legal"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Depósito Legal PDF
+            </label>
+            <input
+              type="file"
+              id="deposito_legal"
+              name="deposito_legal"
+              accept=".pdf" // Asegúrate de aceptar solo archivos PDF
+              onChange={handleFileChange} // Maneja el cambio de archivo
+              required
+              className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue file:text-white hover:file:bg-gold"
+            />
+          </div>
+
           <div className="flex justify-center">
             <button
               type="submit"
