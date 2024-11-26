@@ -27,7 +27,8 @@ export default function Register() {
     try {
       const { confirmPassword, ...userData } = data;
       console.log("Datos del usuario:", userData); // Verifica los datos que se enviarán
-      const response = await axios.post("/api/register", userData);
+      // Realizamos la solicitud POST a la ruta de Supabase
+      const response = await axios.post("/api/getRegister", userData);
       console.log(response.data.message);
 
       // Limpiar el formulario después de un envío exitoso
@@ -48,7 +49,6 @@ export default function Register() {
       </Head>
       <WorkBar />
       <div className="flex items-center justify-center min-h-screen pt-16 pb-16">
-        {" "}
         {/* formulario de registro */}
         <div className="bg-gray-100 flex flex-col sm:py-12 md:w-full md:max-w-4xl rounded-lg shadow-lg">
           <div className="p-10 xs:p-0 mx-auto w-full">
