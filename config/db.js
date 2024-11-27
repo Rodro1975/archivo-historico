@@ -8,7 +8,7 @@ let pool;
 if (process.env.NODE_ENV === "production") {
   // Configuración para PostgreSQL en producción
   pool = new Pool({
-    connectionString: process.env.DATABASE_URL, // Variable ya configurada en Vercel
+    connectionString: process.env.NEXT_PUBLIC_SUPABASE_URL, // Variable ya configurada en Vercel
     ssl: {
       rejectUnauthorized: false, // Permite conexiones seguras
     },

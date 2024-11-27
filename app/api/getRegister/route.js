@@ -1,13 +1,14 @@
 // app/api/getRegister/route.js
-import { createClient } from "@supabase/supabase-js";
 
-// Crear cliente Supabase
+import { createClient } from "@supabase/supabase-js";
+import bcrypt from "bcryptjs";
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error(
-    "Las variables de entorno de Supabase no están configuradas correctamente."
+    "Variables de entorno de Supabase no configuradas correctamente."
   );
 }
 
@@ -15,6 +16,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(req) {
   try {
+    // Extraer datos de la solicitud
     const {
       primerNombre,
       segundoNombre,
@@ -27,7 +29,7 @@ export async function POST(req) {
       password,
     } = await req.json();
 
-    // Validación de campos obligatorios
+    // Validar campos obligatorios
     if (
       !primerNombre ||
       !apellidoPaterno ||
@@ -43,27 +45,65 @@ export async function POST(req) {
       );
     }
 
-    // Registro del usuario en Supabase
-    const { user, error } = await supabase.auth.signUp({
+    // Crear usuario en Supabase Auth
+    const { data: authData, error: authError } = await supabase.auth.signUp({
       email: correo,
       password: password,
     });
 
-    // Mensaje de depuración
-    console.log("Respuesta de signUp:", { user, error });
-
-    // Manejo de errores en el registro
-    if (error) {
-      console.error("Error al registrar en Supabase Auth:", error.message);
-      return new Response(JSON.stringify({ message: error.message }), {
+    if (authError) {
+      console.error("Error en Supabase Auth:", authError.message);
+      return new Response(JSON.stringify({ message: authError.message }), {
         status: 400,
       });
     }
 
-    // Si todo sale bien
-    return new Response(JSON.stringify({ message: "Registro exitoso", user }), {
-      status: 200,
-    });
+    if (!authData || !authData.user) {
+      console.error("Error inesperado: No se recibió 'user' de Supabase Auth.");
+      return new Response(
+        JSON.stringify({ message: "Error desconocido en la autenticación" }),
+        { status: 500 }
+      );
+    }
+
+    const idAuth = authData.user.id; // UUID generado por Supabase Auth
+
+    // Encriptar contraseña
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insertar datos en la tabla usuarios
+    const { data: dbData, error: dbError } = await supabase
+      .from("usuarios")
+      .insert([
+        {
+          id_auth: idAuth, // UUID desde Supabase Auth
+          primer_nombre: primerNombre,
+          segundo_nombre: segundoNombre || null,
+          apellido_paterno: apellidoPaterno,
+          apellido_materno: apellidoMaterno || null,
+          correo: correo,
+          telefono: telefono || null,
+          rol: rol,
+          justificacion: justificacion,
+          password: hashedPassword,
+        },
+      ]);
+
+    if (dbError) {
+      console.error("Error al insertar en la tabla usuarios:", dbError.message);
+      return new Response(JSON.stringify({ message: dbError.message }), {
+        status: 400,
+      });
+    }
+
+    return new Response(
+      JSON.stringify({
+        message: "Registro exitoso",
+        authUser: authData.user,
+        userData: dbData,
+      }),
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error inesperado:", error);
     return new Response(JSON.stringify({ message: error.message }), {
