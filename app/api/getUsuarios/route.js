@@ -1,3 +1,5 @@
+//app/api/getUsuarios/route.js
+
 import supabase from "@/supabase";
 
 export async function GET() {

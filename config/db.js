@@ -1,26 +1,20 @@
 // config/db.js
+import { createClient } from "@supabase/supabase-js";
 
-import { createPool } from "mysql2/promise";
-import { Pool } from "pg";
+// Variables de entorno
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
-let pool;
-
-if (process.env.NODE_ENV === "production") {
-  // Configuración para PostgreSQL en producción
-  pool = new Pool({
-    connectionString: process.env.NEXT_PUBLIC_SUPABASE_URL, // Variable ya configurada en Vercel
-    ssl: {
-      rejectUnauthorized: false, // Permite conexiones seguras
-    },
-  });
-} else {
-  // Configuración para MySQL en desarrollo
-  pool = createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "db_archivoHistorico",
-  });
+// Log para depuración (solo en desarrollo)
+if (process.env.NODE_ENV === "development") {
+  console.log("Supabase URL:", supabaseUrl);
+  console.log(
+    "Supabase Key:",
+    supabaseKey ? "**** (oculta)" : "No configurada"
+  );
 }
 
-export default pool;
+// Crear cliente de Supabase
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+export default supabase;

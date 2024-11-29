@@ -1,7 +1,7 @@
-// `pages/_app.js`
-import "../styles/globals.css";
+// pages/_app.js
 import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient"; // Asegúrate de configurar supabaseClient
+import supabase from "../supabase"; // Ajusta la ruta según tu estructura de archivos
+import "../styles/globals.css";
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {

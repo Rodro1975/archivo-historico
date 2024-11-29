@@ -1,58 +1,51 @@
-import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken"; // Importamos jsonwebtoken para manejar el JWT
-import bcrypt from "bcrypt"; // bcrypt para hashear contraseñas
-import pool from "../../../config/db"; // Importar la conexión a la base de datos
+// app/api/login/route.js
+import supabase from "@/config/db";
 
-// Clave secreta para firmar el JWT. Es importante que esta clave sea segura y esté en variables de entorno.
-const JWT_SECRET = process.env.JWT_SECRET || "clave_secreta_super_segura";
+export async function POST(req) {
+  console.log("Solicitud recibida en /api/login");
 
-export async function POST(request) {
   try {
-    const { email, password } = await request.json();
+    const { email, password } = await req.json();
+    console.log("Datos recibidos:", { email, password });
 
-    // Consulta a la base de datos para buscar el usuario
-    const query = "SELECT * FROM usuarios WHERE correo = ?";
-    const [rows] = await pool.query(query, [email]);
+    if (!email || !password) {
+      console.error("Email o contraseña faltantes.");
+      return new Response(
+        JSON.stringify({ error: "Email o contraseña faltantes." }),
+        { status: 400 }
+      );
+    }
 
-    // Verifica si el usuario existe
-    if (rows.length === 0) {
-      return NextResponse.json(
-        { message: "Correo o contraseña incorrectos" },
+    // Autenticación con Supabase
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    console.log("Respuesta de Supabase:", { data, error });
+
+    if (error || !data.user) {
+      console.error("Error de autenticación:", error);
+      return new Response(
+        JSON.stringify({ error: "Credenciales inválidas." }),
         { status: 401 }
       );
     }
 
-    const user = rows[0];
-
-    // Verifica la contraseña (hasheada en la base de datos)
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return NextResponse.json(
-        { message: "Correo o contraseña incorrectos" },
-        { status: 401 }
-      );
-    }
-
-    // Si la contraseña es válida, generamos el JWT
-    const token = jwt.sign(
-      {
-        id: user.id_usuario, // ID del usuario
-        rol: user.rol, // Rol del usuario
-        nombre: user.primer_nombre, // Primer nombre del usuario
-        apellido: user.apellido_paterno, // Apellido paterno del usuario
-      },
-      JWT_SECRET, // Clave secreta
-      { expiresIn: "1h" } // Token válido por 1 hora
+    // Devuelve el token de acceso en la respuesta
+    const { access_token } = data.session;
+    return new Response(
+      JSON.stringify({
+        success: true,
+        token: access_token,
+        role: data.user.role,
+      }),
+      { status: 200 }
     );
-
-    // Retornamos el token en la respuesta
-    return NextResponse.json({ token });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { message: "Error en el servidor" },
-      { status: 500 }
-    );
+    console.error("Error en el servidor:", error.message);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
   }
 }
