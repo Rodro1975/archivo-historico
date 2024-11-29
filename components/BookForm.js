@@ -1,8 +1,15 @@
 // components/BookForm.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
-const BookForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
+// Inicializar Supabase
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const BookForm = () => {
+  const initialFormData = {
     codigoRegistro: "",
     isbn: "",
     doi: "",
@@ -21,7 +28,6 @@ const BookForm = ({ onSubmit }) => {
     division: "",
     departamento: "",
     tipoAutoria: "",
-    contraPortada: "",
     dimensiones: "",
     numeroPaginas: "",
     idioma: "",
@@ -29,12 +35,16 @@ const BookForm = ({ onSubmit }) => {
     tiraje_o_ibd: "",
     esTraduccion: false,
     sinopsis: "",
-    depositoLegal: "",
-    fechaRegistro: "",
-    portada: null, // Para archivo
-    archivoPdf: null, // Para archivo
-  });
+    depositoLegal: true,
+    portada: null, // Archivo
+    archivo_pdf: null, // Archivo
+    depositoLegal_pdf: null, // Archivo
+  };
 
+  const [formData, setFormData] = useState(initialFormData);
+  const [books, setBooks] = useState([]); // Almacena los libros recuperados de la base de datos
+
+  // Manejar cambios en campos de texto y checkbox
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevState) => ({
@@ -43,42 +53,114 @@ const BookForm = ({ onSubmit }) => {
     }));
   };
 
+  // Manejar selección de archivos
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.files[0], // Subida de archivos
+      [e.target.name]: e.target.files[0],
     });
   };
 
+  // Subir archivos con validaciones y manejo de errores más claros
+  const uploadFile = async (file, path, bucketName) => {
+    if (!file) {
+      console.warn(
+        `No se seleccionó un archivo para subir al bucket: ${bucketName}`
+      );
+      return null;
+    }
+
+    try {
+      const { data, error } = await supabase.storage
+        .from(bucketName)
+        .upload(path, file, { upsert: true });
+
+      if (error) {
+        console.error(
+          `Error subiendo archivo al bucket ${bucketName}:`,
+          error.message
+        );
+        return null;
+      }
+
+      console.log(`Archivo subido con éxito a ${bucketName}:`, data.path);
+      return data.path;
+    } catch (err) {
+      console.error("Error inesperado al subir archivo:", err);
+      return null;
+    }
+  };
+
+  // Enviar formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Crear una instancia de FormData
-    const formDataToSend = new FormData();
-
-    // Agregar los campos del formulario a FormData
-    for (const key in formData) {
-      formDataToSend.append(key, formData[key]);
+    // Validar campos obligatorios
+    if (!formData.titulo || !formData.codigoRegistro || !formData.portada) {
+      alert("Por favor, completa todos los campos obligatorios.");
+      return;
     }
 
-    // Enviar la solicitud
-    const response = await fetch("/api/libros", {
-      method: "POST",
-      body: formDataToSend,
-    });
+    // Subir archivos al bucket correspondiente
+    const portadaPath = await uploadFile(
+      formData.portada,
+      `portadas/${formData.codigoRegistro}-${formData.portada.name}`,
+      "portadas"
+    );
+    const archivoPdfPath = await uploadFile(
+      formData.archivo_pdf,
+      `libros/${formData.codigoRegistro}-${formData.archivo_pdf.name}`,
+      "libros"
+    );
+    const depositoLegalPdfPath = await uploadFile(
+      formData.depositoLegal_pdf,
+      `depositolegal/${formData.codigoRegistro}-${formData.depositoLegal_pdf.name}`,
+      "depositolegal"
+    );
 
-    if (response.ok) {
-      // Manejo de respuesta exitosa
-      const data = await response.json();
-      alert(`Libro registrado con éxito: ID ${data.id}`);
-      // Aquí puedes limpiar el formulario o redirigir al usuario
-      setFormData(initialFormData);
+    if (!portadaPath || !archivoPdfPath || !depositoLegalPdfPath) {
+      alert(
+        "Hubo un problema al subir los archivos. Por favor, inténtalo nuevamente."
+      );
+      return;
+    }
+
+    // Insertar en la tabla libros
+    const { data, error } = await supabase.from("libros").insert([
+      {
+        ...formData,
+        portada: portadaPath,
+        archivo_pdf: archivoPdfPath,
+        depositoLegal_pdf: depositoLegalPdfPath,
+      },
+    ]);
+
+    if (error) {
+      console.error("Error al insertar en la tabla libros:", error.message);
+      alert(`Error al registrar el libro: ${error.message}`);
     } else {
-      // Manejo de error
-      const errorData = await response.json();
-      alert(`Error: ${errorData.message}`);
+      console.log("Libro registrado con éxito:", data);
+      alert("Libro registrado con éxito");
+      setFormData(initialFormData); // Resetear el formulario
+      fetchBooks(); // Actualizar la lista de libros después de insertar
     }
   };
+
+  // Recuperar datos de la tabla 'libros'
+  const fetchBooks = async () => {
+    const { data, error } = await supabase.from("libros").select("*");
+
+    if (error) {
+      console.error("Error al consultar libros:", error.message);
+    } else {
+      console.log("Datos recibidos:", data);
+      setBooks(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
 
   return (
     <div className="container ml-auto mr-auto flex flex-wrap items-start mt-8 items-center justify-center">
@@ -571,7 +653,7 @@ const BookForm = ({ onSubmit }) => {
             </label>
           </div>
 
-          {/* ... otros campos aquí ... */}
+          {/* Campos del formulario */}
           <div className="mb-4">
             <label
               htmlFor="portada"
@@ -601,8 +683,8 @@ const BookForm = ({ onSubmit }) => {
               type="file"
               id="archivo_pdf"
               name="archivo_pdf"
-              accept=".pdf" // Asegúrate de aceptar solo archivos PDF
-              onChange={handleFileChange} // Maneja el cambio de archivo
+              accept=".pdf"
+              onChange={handleFileChange}
               required
               className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue file:text-white hover:file:bg-gold"
             />
@@ -610,17 +692,17 @@ const BookForm = ({ onSubmit }) => {
 
           <div className="mb-4">
             <label
-              htmlFor="deposito_legal"
+              htmlFor="depositoLegal_pdf"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
               Depósito Legal PDF
             </label>
             <input
               type="file"
-              id="deposito_legal"
-              name="deposito_legal"
-              accept=".pdf" // Asegúrate de aceptar solo archivos PDF
-              onChange={handleFileChange} // Maneja el cambio de archivo
+              id="depositoLegal_pdf"
+              name="depositoLegal_pdf"
+              accept=".pdf"
+              onChange={handleFileChange}
               required
               className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue file:text-white hover:file:bg-gold"
             />

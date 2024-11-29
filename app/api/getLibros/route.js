@@ -1,3 +1,5 @@
+//app/api/getLibros/route.js
+
 import supabase from "@/supabase"; // Importa la instancia configurada de supabase
 
 export async function GET() {

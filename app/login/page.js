@@ -8,6 +8,13 @@ import Head from "next/head";
 import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import { createClient } from "@supabase/supabase-js";
+
+// Inicializar Supabase
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -16,28 +23,33 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      const { email, password } = data;
+
+      // Llama al método de Supabase para iniciar sesión
+      const { data: session, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
 
-      const result = await res.json();
-      console.log("Respuesta del servidor:", result); // Agrega este log para ver la respuesta
-
-      if (res.ok) {
-        // Guarda el token en localStorage o sessionStorage
-        localStorage.setItem("token", result.token);
-        // Redirige a la página del framework
-        router.push("/dashboard");
+      if (error) {
+        // Manejar errores de Supabase
+        setError(error.message);
+        console.error("Error al iniciar sesión:", error);
       } else {
-        // Muestra el error si hay uno
-        setError(result.message);
+        console.log("Sesión iniciada correctamente:", session);
+
+        // Guarda la sesión o el token según sea necesario
+        localStorage.setItem(
+          "supabase.auth.token",
+          session.session.access_token
+        );
+
+        // Redirige al dashboard
+        router.push("/dashboard");
       }
-    } catch (error) {
-      setError("Error en la conexión con el servidor");
+    } catch (err) {
+      setError("Error desconocido al intentar iniciar sesión");
+      console.error("Error inesperado:", err);
     }
   };
 
